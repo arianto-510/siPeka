@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->foreignId('buyer_id');
             $table->integer('quantity');
-            $table->integer('status')->default(0);
             $table->integer('total');
             $table->timestamps();
         });

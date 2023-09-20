@@ -78,10 +78,10 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function cetak($buyer_id)
+    public function cetak($id)
     {
         return view('admin.pages.struk', [
-            'dataStruk' => Transaction::findOrFail($buyer_id)
+            'dataStruk' => Buyer::findOrFail($id)
         ]);
     }
 }

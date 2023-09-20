@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('hp');
             $table->string('meja');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
