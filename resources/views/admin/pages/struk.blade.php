@@ -53,7 +53,7 @@
 <body onload="window.print()">
     <div class="invoice-container">
         <div class="invoice-header">
-            <h1>Cafe Lia Cafe&Resto</h1>
+            <h1>Lia Cafe & Resto</h1>
             <p>Jl. Menwa, Desa Popalia, Kec. Tanggetada</p>
             <p>Telp: +62 823-4909-5583</p>
         </div>

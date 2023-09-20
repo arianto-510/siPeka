@@ -80,11 +80,11 @@
                                                         <div class="form-group">
                                                             <label>Menu</label>
                                                             <div>
-                                                                <ul class="text-left">
+                                                                <ol class="text-left">
                                                                     @foreach ($kasir->transaction as $menu)
                                                                         <li>{{ $menu->product->nama }}</li>
                                                                     @endforeach
-                                                                </ul>
+                                                                </ol>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -94,7 +94,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nominal Uang Pembeli (Rupiah)</label>
-                                                            <input type="text" name="harga" class="form-control"
+                                                            <input type="number" name="harga" class="form-control"
                                                                 id="beli">
                                                         </div>
                                                         <div class="form-group">
@@ -123,56 +123,13 @@
         </div>
     </div>
 
-    {{-- @foreach ($kasirData as $kasir) --}}
-    {{-- <form> --}}
-    <!-- Modal -->
-    {{-- @csrf --}}
-    {{-- <div class="modal fade" id="bayar-{{ $kasir->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Bayar Tagihan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Menu</label>
-                                <input type="text" class="form-control" value="{{ $kasir->transaction->product->nama }}"
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Nominal Pesanan (Rupiah)</label>
-                                <input type="text" name="belanja" id="belanja" class="form-control" value=""
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Nominal Uang Pembeli (Rupiah)</label>
-                                <input type="text" name="harga" class="form-control" id="beli">
-                            </div>
-                            <div class="form-group">
-                                <label>Kembalian</label>
-                                <input type="text" id="kembalian" name="harga" class="form-control"
-                                    value="{{ old('harga') }}" readonly>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a name="tambah" class="btn btn-success" href="#">Cetak</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-    {{-- </form> --}}
-    {{-- @endforeach --}}
-
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.btn-success').on('click', function() {
-                // alert('oke')
-                // console.log('oke')
+            $('#beli').on('input', function() {
+                let uangPembeli = parseInt($('#beli').val())
+                let hargaBeli = parseInt($('#belanja').val())
+                let uangKembalian = uangPembeli - hargaBeli
+                $('#kembalian').val(uangKembalian)
             })
         })
     </script>

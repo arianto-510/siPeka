@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
 use Illuminate\Http\Request;
 
 class DapurController extends Controller
@@ -16,7 +17,8 @@ class DapurController extends Controller
     public function dapur()
     {
         return view('dapur.pages.dapur', [
-            'title' => 'Pesanan'
+            'title' => 'Pesanan',
+            'dataPesanan' => Buyer::latest()->get()
         ]);
     }
 

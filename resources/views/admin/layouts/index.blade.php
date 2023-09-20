@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - {{ $title }}</title>
+    <title>SiPeka - {{ $title }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('back-end/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -24,6 +24,8 @@
     {{-- <script>
         let table = new DataTable('#dataTable');
     </script> --}}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('back-end/vendor/jquery/jquery.min.js') }}"></script>
 
 </head>
 
@@ -95,8 +97,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('back-end/vendor/jquery/jquery.min.js') }}"></script>
+
     <script src="{{ asset('back-end/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
