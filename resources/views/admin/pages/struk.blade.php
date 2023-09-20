@@ -1,4 +1,3 @@
-@dd($dataStruk)
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,39 +54,39 @@
     <div class="invoice-container">
         <div class="invoice-header">
             <h1>Cafe Lia Cafe&Resto</h1>
-            <p>Jl. Contoh No. 123, Kota Contoh</p>
-            <p>Telp: (123) 456-7890</p>
+            <p>Jl. Menwa, Desa Popalia, Kec. Tanggetada</p>
+            <p>Telp: +62 823-4909-5583</p>
         </div>
         <div class="invoice-details">
             <table>
-                @foreach ($dataStruk as $struk)
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Harga</th>
+                </tr>
+                @foreach ($dataStruk->transaction as $struk)
                     <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                    </tr>
-                    <tr>
-                        <td>{{ $struk->product_id->nama }}</td>
-                        <td>2</td>
-                        <td>Rp 20,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cappuccino</td>
-                        <td>1</td>
-                        <td>Rp 18,000</td>
-                    </tr>
-                    <tr>
-                        <td>Chocolate Cake</td>
-                        <td>1</td>
-                        <td>Rp 25,000</td>
+                        <td>{{ $struk->product->nama }}</td>
+                        <td>x {{ $struk->quantity }}</td>
+                        <td>Rp. {{ $struk->product->harga }}</td>
                     </tr>
                 @endforeach
             </table>
         </div>
         <div class="invoice-footer">
-            <p>Total: Rp 63,000</p>
-            <p>Payment Method: Cash</p>
-            <p>Thank you for dining with us!</p>
+            @php
+                $total = 0;
+            @endphp
+            @foreach ($dataStruk->transaction as $struk)
+                @php
+                    $total += $struk->total;
+                @endphp
+            @endforeach
+            <strong>
+                <p>Total: Rp {{ $total }}</p>
+            </strong>
+            <p>Metode Pembayaran: Cash</p>
+            <p>Terimakasih telah berkunjung </p>
         </div>
     </div>
 </body>
