@@ -53,3 +53,4 @@ Route::delete('/deletemenu/{id}', [DashboardController::class, 'delete'])->middl
 Route::post('/detailmenu/{id}', [DashboardController::class, 'detailMenu'])->middleware('auth');
 Route::get('/admin/kasir', [DashboardController::class, 'kasir'])->middleware('auth');
 Route::get('/admin/{id}/struk', [DashboardController::class, 'cetak'])->middleware('auth');
+Route::put('/admin/{id}/update', [DashboardController::class, 'statusDone'])->middleware('auth');

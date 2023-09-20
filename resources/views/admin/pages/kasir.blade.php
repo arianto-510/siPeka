@@ -1,6 +1,14 @@
 @extends('admin.layouts.index')
 
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <h1 class="h3 mb-2 text-gray-800">Kasir</h1>
 
     <!-- DataTales Example -->
@@ -62,8 +70,46 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn-sm btn-danger">Hapus</button>
-                                        <button class="btn-sm btn-success" data-toggle="modal"
+                                        {{-- <button class="btn-sm btn-danger">Hapus</button> --}}
+
+                                        {{-- Button Selesaikan --}}
+                                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                            Selesai
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Transaksi
+                                                            Selesai</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Yakin Transaksi Selesai?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <form action="/admin/{{ $kasir->id }}/update" method="post">
+                                                            @method('put')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Iya
+                                                                Selesai</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Button Bayar --}}
+                                        <button class="btn btn-sm btn-success" data-toggle="modal"
                                             data-target="#bayar-{{ $kasir->id }}">Bayar</button>
                                         <div class="modal fade text-left" id="bayar-{{ $kasir->id }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">

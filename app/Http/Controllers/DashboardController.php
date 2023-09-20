@@ -84,4 +84,15 @@ class DashboardController extends Controller
             'dataStruk' => Buyer::findOrFail($id)
         ]);
     }
+
+    public function statusDone($id)
+    {
+        $model = Buyer::findOrFail($id);
+
+        $model->status = 1;
+
+        $model->save();
+
+        return redirect('/admin/kasir')->with('success', 'Trasaksi ' . $model->nama . ' Selesai');
+    }
 }
