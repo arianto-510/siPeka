@@ -100,7 +100,15 @@ class DashboardController extends Controller
     {
         return view('admin.pages.laporan', [
             'title' => 'Laporan',
-            'dataPenjualan' => Product::all()
+            'dataPenjualan' => Product::latest()->get()
+        ]);
+    }
+
+    public function laporanByDate($tglAwal, $tglAkhir)
+    {
+        return view('admin.pages.laporanfilter', [
+            'title' => 'Laporan',
+            'dataPenjualan' => Buyer::whereBetween('created_at', [$tglAwal, $tglAkhir])->get()
         ]);
     }
 }

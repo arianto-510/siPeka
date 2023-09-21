@@ -25,7 +25,7 @@
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link" href="/adminmenu">
+            <a class="nav-link" href="/admin/menu">
                 <i class="fas fa-fw fa-monument"></i>
                 <span>Kelola Menu</span></a>
         </li>

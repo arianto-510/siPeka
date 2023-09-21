@@ -16,6 +16,21 @@
             <h6 class="m-0 font-weight-bold text-primary">Laporan Penjualan</h6>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tglAwal">Tanggal Awal</label>
+                        <input type="date" class="form-control" id="tglAwal">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tglAkhir">Tanggal Awal</label>
+                        <input type="date" class="form-control" id="tglAkhir">
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-primary mb-3" id="cari">Cari Data</a>
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -39,13 +54,17 @@
                                 <td>{{ $report->transaction->sum('total') }}</td>
                             </tr>
                         @endforeach
-                        <tr>
-                            <th>Total</th>
-                            <th>84000</th>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('cari').addEventListener('click', function() {
+            var tglAwal = document.getElementById('tglAwal').value;
+            var tglAkhir = document.getElementById('tglAkhir').value;
+            window.location.href = 'laporan/' + tglAwal + '/' + tglAkhir;
+        });
+    </script>
 @endsection

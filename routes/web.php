@@ -47,7 +47,7 @@ Route::get('/dapur/kontak', [DapurController::class, 'kontak'])->middleware('aut
 
 //Route Admin
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('auth');
-Route::get('/adminmenu', [DashboardController::class, 'menu'])->middleware('auth');
+Route::get('/admin/menu', [DashboardController::class, 'menu'])->middleware('auth');
 Route::post('/tambahmenu', [DashboardController::class, 'store'])->middleware('auth');
 Route::delete('/deletemenu/{id}', [DashboardController::class, 'delete'])->middleware('auth');
 Route::post('/detailmenu/{id}', [DashboardController::class, 'detailMenu'])->middleware('auth');
@@ -55,3 +55,4 @@ Route::get('/admin/kasir', [DashboardController::class, 'kasir'])->middleware('a
 Route::get('/admin/{id}/struk', [DashboardController::class, 'cetak'])->middleware('auth');
 Route::put('/admin/{id}/update', [DashboardController::class, 'statusDone'])->middleware('auth');
 Route::get('/admin/laporan', [DashboardController::class, 'laporan'])->middleware('auth');
+Route::get('/admin/laporan/{tglAwal}/{tglAkhir}', [DashboardController::class, 'laporanByDate'])->middleware('auth');
