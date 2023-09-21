@@ -9,7 +9,6 @@
             </button>
         </div>
     @endif
-    <h1 class="h3 mb-2 text-gray-800">Kasir</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

@@ -95,4 +95,12 @@ class DashboardController extends Controller
 
         return redirect('/admin/kasir')->with('success', 'Trasaksi ' . $model->nama . ' Selesai');
     }
+
+    public function laporan()
+    {
+        return view('admin.pages.laporan', [
+            'title' => 'Laporan',
+            'dataPenjualan' => Product::all()
+        ]);
+    }
 }

@@ -54,3 +54,4 @@ Route::post('/detailmenu/{id}', [DashboardController::class, 'detailMenu'])->mid
 Route::get('/admin/kasir', [DashboardController::class, 'kasir'])->middleware('auth');
 Route::get('/admin/{id}/struk', [DashboardController::class, 'cetak'])->middleware('auth');
 Route::put('/admin/{id}/update', [DashboardController::class, 'statusDone'])->middleware('auth');
+Route::get('/admin/laporan', [DashboardController::class, 'laporan'])->middleware('auth');

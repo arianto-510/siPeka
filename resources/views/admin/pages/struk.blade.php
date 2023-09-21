@@ -47,11 +47,20 @@
             margin-top: 20px;
             text-align: center;
         }
+
+        .selesai {
+            background-color: red;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body onload="window.print()">
-    <div class="invoice-container">
+    <div class="invoice-container" style="margin-top: 50px">
         <div class="invoice-header">
             <h1>Lia Cafe & Resto</h1>
             <p>Jl. Menwa, Desa Popalia, Kec. Tanggetada</p>
@@ -89,6 +98,10 @@
             <p>Terimakasih telah berkunjung </p>
         </div>
     </div>
+    <form action="/admin/kasir">
+        @csrf
+        <button class="selesai">Selesai</button>
+    </form>
 </body>
 
 </html>
