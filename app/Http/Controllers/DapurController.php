@@ -18,7 +18,8 @@ class DapurController extends Controller
     {
         return view('dapur.pages.dapur', [
             'title' => 'Pesanan',
-            'dataPesanan' => Buyer::latest()->get()
+            'dataPesanan' => Buyer::latest()->get(),
+            'notif' => Buyer::where('created_at', '>=', now()->subSeconds(3))->get()->count()
         ]);
     }
 

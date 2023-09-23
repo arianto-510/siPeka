@@ -65,7 +65,7 @@
                                                 class="form-control text-center quantity-amount border-0 disabled"
                                                 value="{{ $cart['quantity'] }}" placeholder=""
                                                 aria-label="Example text with button addon" aria-describedby="button-addon1"
-                                                id="qty{{ $key }}">
+                                                id="qty{{ $key }}" readonly>
                                         </div>
                                     </td>
                                     <td id="ttl{{ $key }}" class="h5 text-black">

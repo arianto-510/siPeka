@@ -32,7 +32,7 @@
                         @php
                             $i = 1;
                         @endphp
-                        @foreach ($kasirData as $kasir)
+                        @foreach ($kasirData as $key => $kasir)
                             @if ($kasir->status == 0)
                                 <tr>
                                     <td>{{ $i++ }}</td>
@@ -74,8 +74,15 @@
                                         {{-- Button Selesaikan --}}
                                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
                                             data-target="#exampleModal">
-                                            Selesai
+                                            <i class="fas fa-fw fa-monument"></i>
                                         </button>
+
+                                        <form action="/admin/{{ $kasir->id }}/batal" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" onclick="return confirm('Yakin akan dihapus?')"
+                                                class="btn btn-sm btn-danger"><i class="fas fa-fw fa-trash"></i></button>
+                                        </form>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1"
@@ -109,9 +116,10 @@
 
                                         {{-- Button Bayar --}}
                                         <button class="btn btn-sm btn-success" data-toggle="modal"
-                                            data-target="#bayar-{{ $kasir->id }}">Bayar</button>
-                                        <div class="modal fade text-left" id="bayar-{{ $kasir->id }}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            data-target="#bayar-{{ $kasir->id }}"><i
+                                                class="fas fa-fw fa-money-bill"></i></button>
+                                        <div class="modal fade text-left modal-bayar" id="bayar-{{ $kasir->id }}"
+                                            tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -134,18 +142,20 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nominal Pesanan (Rupiah)</label>
-                                                            <input type="text" name="belanja" id="belanja"
-                                                                class="form-control" value="{{ $total }}" readonly>
+                                                            <input type="text" name="belanja"
+                                                                id="belanja{{ $key }}" class="form-control"
+                                                                value="{{ $total }}" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nominal Uang Pembeli (Rupiah)</label>
                                                             <input type="number" name="harga" class="form-control"
-                                                                id="beli">
+                                                                id="beli{{ $key }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Kembalian</label>
-                                                            <input type="text" id="kembalian" name="harga"
-                                                                class="form-control" value="{{ old('harga') }}" readonly>
+                                                            <input type="text" id="kembalian{{ $key }}"
+                                                                name="harga" class="form-control"
+                                                                value="{{ old('harga') }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -170,12 +180,19 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#beli').on('input', function() {
-                let uangPembeli = parseInt($('#beli').val())
-                let hargaBeli = parseInt($('#belanja').val())
-                let uangKembalian = uangPembeli - hargaBeli
-                $('#kembalian').val(uangKembalian)
+            $('.modal-bayar').each(function(index, value) {
+                $('#beli' + index).on('input', function() {
+                    let uangPembeli = parseInt($(this).val())
+                    let hargaBeli = parseInt($('#belanja' + index).val())
+                    console.log(hargaBeli);
+                    let uangKembalian = uangPembeli - hargaBeli
+                    $('#kembalian' + index).val(uangKembalian)
+                })
             })
+
+            // setInterval(function() {
+            //     window.location.reload(true)
+            // }, 2000);
         })
     </script>
 @endsection

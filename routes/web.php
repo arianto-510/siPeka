@@ -56,3 +56,5 @@ Route::get('/admin/{id}/struk', [DashboardController::class, 'cetak'])->middlewa
 Route::put('/admin/{id}/update', [DashboardController::class, 'statusDone'])->middleware('auth');
 Route::get('/admin/laporan', [DashboardController::class, 'laporan'])->middleware('auth');
 Route::get('/admin/laporan/{tglAwal}/{tglAkhir}', [DashboardController::class, 'laporanByDate'])->middleware('auth');
+Route::get('/admin/laporan/download', [DashboardController::class, 'reportPdf'])->middleware('auth');
+Route::delete('/admin/{id}/batal', [DashboardController::class, 'batal'])->middleware('auth');

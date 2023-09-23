@@ -1,3 +1,4 @@
+{{-- @dd($notif) --}}
 @extends('dapur.layouts.index')
 
 @section('content')
@@ -15,7 +16,7 @@
         }
     </style>
 
-    <h3 class="mu-10">Pesanan Masuk</h3>
+    <h3 class="mu-10" id="dapur">Pesanan Masuk</h3>
     @foreach ($dataPesanan as $pesanan)
         @if ($pesanan->status === 0)
             <div class="card mb-3 me-3" style="width: 22rem;">
@@ -37,11 +38,25 @@
         @endif
     @endforeach
 
-    {{-- <script>
+    @if ($notif >= 1)
+        <script>
+            $(document).ready(function() {
+                audio = new Audio('http://localhost:8000/orderan.mp3')
+                audio.play()
+            });
+        </script>
+    @endif
+    <button id="test" class="btn btn-primary">Sistem Informasi Pengelolahan Cafe - Daftar Pesanan</button>
+    <script>
         $(document).ready(function() {
             setInterval(function() {
-                $('#dapur').load(location.href + ' #dapur');
+                window.location.reload(true)
             }, 2000);
+
+            $('#test').click(function() {
+                audio = new Audio('http://localhost:8000/orderan.mp3')
+                audio.play()
+            })
         });
-    </script> --}}
+    </script>
 @endsection

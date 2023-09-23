@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Dompdf\Dompdf;
 
 class DashboardController extends Controller
 {
@@ -46,7 +47,7 @@ class DashboardController extends Controller
 
         Product::create($menuValidate);
 
-        return redirect('/adminmenu')->with('success', 'Menu berhasil ditambahkan');
+        return redirect('/admin/menu')->with('success', 'Menu berhasil ditambahkan');
     }
 
     public function delete($id)
@@ -59,7 +60,7 @@ class DashboardController extends Controller
         Storage::delete($model->gambar);
         $model->delete();
 
-        return redirect('/adminmenu')->with('success', 'Menu berhasil dihapus');
+        return redirect('/admin/menu')->with('success', 'Menu berhasil dihapus');
     }
 
     public function detailMenu($id)
@@ -106,9 +107,31 @@ class DashboardController extends Controller
 
     public function laporanByDate($tglAwal, $tglAkhir)
     {
-        return view('admin.pages.laporanfilter', [
+        $reportPdf = view('admin.pages.laporanfilter', [
             'title' => 'Laporan',
             'dataPenjualan' => Buyer::whereBetween('created_at', [$tglAwal, $tglAkhir])->get()
         ]);
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($reportPdf);
+
+
+        $dompdf->setPaper('A4', 'landscape');
+
+        $dompdf->render();
+
+        $dompdf->stream();
+    }
+
+    public function batal($id)
+    {
+        // dd($id);
+        $modelBuyer = Buyer::findOrFail($id);
+        $modelTransaction = Transaction::findOrFail($id);
+        $modelBuyer->delete();
+        $modelTransaction->delete();
+
+        return redirect('/admin/kasir')->with('success', 'Transaksi berhasil dihapus');
     }
 }

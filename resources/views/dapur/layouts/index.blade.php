@@ -16,8 +16,9 @@
     <link href="{{ url('front-end/css/tiny-slider.css') }}" rel="stylesheet">
     <link href="{{ url('front-end/css/style.css') }}" rel="stylesheet">
     <title>SiPeka - {{ $title }}</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
-        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('back-end/vendor/jquery/jquery.min.js') }}"></script>
 </head>
 
 <body>
